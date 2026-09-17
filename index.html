@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free PTE · PTE 机经练习</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%232563EB"/><path d="M18 46V18h16.5a10.5 10.5 0 0 1 0 21H27v7h-9zm9-15h7a2.5 2.5 0 0 0 0-5h-7v5z" fill="white"/></svg>'>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="#/home" data-i18n="brand">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5h7.2a4.6 4.6 0 0 1 0 9.2H8.4V19H4zm4.4-8.1h2.8a1.1 1.1 0 0 0 0-2.2H8.4v2.2z" fill="#fff"/></svg></span>
+      Free <b>PTE</b>
+    </a>
+    <nav class="nav">
+      <a href="#/home" data-nav="home" data-i18n="nav.home">首页</a>
+      <a href="#/clb" data-nav="clb" data-i18n="nav.clb">CLB 等级</a>
+      <a href="#/practice" data-nav="practice" data-i18n="nav.practice">机经练习</a>
+      <a href="#/community" data-nav="community" data-i18n="nav.community">交流社区</a>
+    </nav>
+    <div class="header-actions">
+      <button class="chip-btn" id="themeBtn" title="切换主题">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span id="themeTxt" data-i18n="theme.light">亮色</span>
+      </button>
+      <button class="chip-btn" id="langBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        <span id="langTxt" class="lang-txt" data-i18n="lang.zh">中文</span>
+      </button>
+      <div class="avatar" id="avatarBtn" data-i18n="avatar.tip">F</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ===== 视图：首页 ===== -->
+<section class="view" id="view-home">
+  <div class="container">
+    <div class="hero">
+      <div class="grid">
+        <div>
+          <span class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.5L5.7 21 8 13.8 2 9.2h7.6z"/></svg><span data-i18n="home.eyebrow">PTE 备考一站式工作台</span></span>
+          <h1><span data-i18n="home.h1a">机经在手，</span><span class="grad" data-i18n="home.h1b">PTE 提分不愁</span></h1>
+          <p class="sub" data-i18n="home.sub">覆盖 WFD、RS、SST 等 7 大核心题型，真题高频机经 + 逐题对照答案 + 收藏错题本，随时随地高效刷题。</p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="#/practice" data-i18n="home.cta1">开始练习</a>
+            <a class="btn btn-ghost btn-lg" href="#/clb" data-i18n="home.cta2">了解 CLB 等级</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hs"><b id="statQ">125+</b><span data-i18n="home.s1">题库题目</span></div>
+            <div class="hs"><b>7</b><span data-i18n="home.s2">核心题型</span></div>
+            <div class="hs"><b>12,000+</b><span data-i18n="home.s3">练习人次</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="demo-card">
+            <div class="dc-top"><span class="pill"><span class="dot"></span><span data-i18n="home.demo.tag">WFD 听写句子</span></span><span style="margin-left:auto;font-size:12px;color:var(--text-3);font-weight:600">#1 (1/61)</span></div>
+            <div class="demo-wave"><i style="height:22px"></i><i style="height:38px"></i><i style="height:16px"></i><i style="height:44px"></i><i style="height:28px"></i><i style="height:48px"></i><i style="height:20px"></i><i style="height:34px"></i><i style="height:42px"></i><i style="height:18px"></i><i style="height:30px"></i><i style="height:40px"></i></div>
+            <textarea readonly placeholder=""></textarea>
+            <div class="demo-btns"><span class="btn btn-primary" style="flex:0 0 44%">▶ <span data-i18n="home.demo.play">播放</span></span><span class="btn btn-ghost" data-i18n="home.demo.submit">提交</span><span class="btn btn-ghost" data-i18n="home.demo.next">下一题</span></div>
+          </div>
+          <div class="hero-cat"><img src="assets/cat.jpg" alt="Free PTE 吉祥物白猫"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="home.types.title">核心题型速览</h2>
+          <p data-i18n="home.types.sub">真题高频机经，点击卡片直接开始练习</p>
+        </div>
+      </div>
+      <div class="type-grid" id="typeGrid"><!-- JS 渲染 --></div>
+    </div>
+
+    <div class="section" style="padding-top:8px">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="home.steps.title">三步开始刷题</h2>
+          <p data-i18n="home.steps.sub">从选题到评分，一条完整练习闭环</p>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-no"></div>
+          <h3 data-i18n="home.step1.t">选择题型</h3>
+          <p data-i18n="home.step1.d">按考试题型进入对应题库，WFD、RS、SST 等任你切换。</p>
+        </div>
+        <div class="step">
+          <div class="step-no"></div>
+          <h3 data-i18n="home.step2.t">听音作答</h3>
+          <p data-i18n="home.step2.d">播放音频完成作答，支持收藏、只看收藏与任意跳题。</p>
+        </div>
+        <div class="step">
+          <div class="step-no"></div>
+          <h3 data-i18n="home.step3.t">对照评分</h3>
+          <p data-i18n="home.step3.d">提交后对照参考答案，自我标记正误，进度与统计实时更新。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <h2 data-i18n="home.cta.t">现在就开始你的 PTE 提分之旅</h2>
+      <p data-i18n="home.cta.d">免费机经 · 高频真题 · 科学刷题节奏</p>
+      <a class="btn btn-lg" href="#/practice" data-i18n="home.cta.b">立即开始练习</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：机经练习 ===== -->
+<section class="view" id="view-practice">
+  <div class="container">
+    <div class="practice-layout">
+      <div>
+        <div class="type-tabs" id="typeTabs"><!-- JS 渲染 --></div>
+        <div class="module">
+          <div class="module-head">
+            <div class="module-title">
+              <span class="type-badge" id="typeBadge">WFD <small>听写句子</small></span>
+              <span class="q-no"><b id="qNoCur">#1</b> (<span id="qNoPos">1</span>/<span id="qNoTotal">77</span>)</span>
+            </div>
+            <div class="module-ops">
+              <button class="star-btn" id="favBtn" title="收藏本题">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5l2.7 5.5 6 .9-4.35 4.2 1.05 6L12 17.4l-5.4 2.7 1.05-6L3.3 9.9l6-.9z"/></svg>
+              </button>
+              <div class="seg" id="filterSeg">
+                <button data-filter="fav" id="fFav"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.7 5.5 6 .9-4.35 4.2 1.05 6L12 17.4l-5.4 2.7 1.05-6L3.3 9.9l6-.9z"/></svg><span data-i18n="practice.f.fav">只看收藏</span></button>
+                <button data-filter="all" class="active" id="fAll"><span data-i18n="practice.f.all">显示所有</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="module-body">
+            <div class="player">
+              <button class="play-btn" id="playBtn" title="播放音频">
+                <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </button>
+              <div class="wave" id="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="play-time" id="playTime">00:00</span>
+              <span class="play-state" id="playState" data-i18n="practice.player.idle">待播放</span>
+            </div>
+            <div class="answer-area" id="answerArea"><!-- 按题型渲染 --></div>
+            <div class="controls">
+              <div class="sel-wrap"><select id="qSelect" title="题号跳转"></select><svg class="sel-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+              <button class="btn btn-ghost" id="playCtl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg><span data-i18n="practice.play">播放</span></button>
+              <button class="btn btn-ghost" id="resetBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg><span data-i18n="practice.reset">重置</span></button>
+              <button class="btn btn-primary" id="submitBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="practice.submit">提交</span></button>
+              <div class="spacer"></div>
+              <button class="btn btn-ghost" id="prevBtn"><span data-i18n="practice.prev">&lt; 上一题</span></button>
+              <button class="btn btn-ghost" id="nextBtn"><span data-i18n="practice.next">下一题 &gt;</span></button>
+            </div>
+            <div class="result" id="resultPanel"><!-- 提交后渲染 --></div>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="side-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7" rx="1"/><rect x="13" y="6" width="3" height="11" rx="1"/></svg><span data-i18n="practice.stat.title">练习统计</span></h3>
+          <div class="stat-list">
+            <div class="stat-item">
+              <div class="si-top"><span data-i18n="practice.stat.done">总完成</span><b class="si-val" id="stDone">0</b></div>
+              <div class="si-bar"><i id="stDoneBar" style="width:0%"></i></div>
+            </div>
+          </div>
+          <div class="stat-total">
+            <div class="st ok"><b id="stC">0</b><span data-i18n="practice.stat.c">正确</span></div>
+            <div class="st par"><b id="stP">0</b><span data-i18n="practice.stat.p">部分</span></div>
+            <div class="st bad"><b id="stW">0</b><span data-i18n="practice.stat.w">错误</span></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg><span data-i18n="practice.qgrid.title">题目列表</span></h3>
+          <div class="q-grid" id="qGrid"><!-- JS 渲染题号 --></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：CLB 等级 ===== -->
+<section class="view" id="view-clb">
+  <div class="container">
+    <div class="page-head">
+      <h1 data-i18n="clb.title">CLB 等级对照</h1>
+      <p data-i18n="clb.sub">加拿大语言基准（Canadian Language Benchmarks）与 PTE Core 分数的官方对照表</p>
+      <span class="note-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n="clb.source">依据培生官方《PTE Core Score Guide》与 IRCC 换算表</span>
+      </span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup>
+        <thead>
+          <tr>
+            <th data-i18n="clb.th1">CLB 等级</th>
+            <th data-i18n="clb.th2">听力 Listening</th>
+            <th data-i18n="clb.th3">阅读 Reading</th>
+            <th data-i18n="clb.th4">口语 Speaking</th>
+            <th data-i18n="clb.th5">写作 Writing</th>
+          </tr>
+        </thead>
+        <tbody id="clbRows"><!-- JS 渲染 --></tbody>
+      </table>
+    </div>
+    <p class="tbl-note" data-i18n="clb.note">注：分数均为区间而非单点值；CLB 1–2 级低于上表最低区间（PTE Core 最低分为 10 分）。换算表会定期复核更新，请以 IRCC 官网最新要求为准。</p>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="ic-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3 data-i18n="clb.c1.t">PTE Core 用于移民</h3>
+        <p data-i18n="clb.c1.d">加拿大移民申请（如快速通道 EE）接受 PTE Core 成绩，按上表换算为 CLB 等级。PTE Academic 用于留学与工作签证，另有独立换算体系。</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6 .9-4.35 4.2 1.05 6L12 17.4l-5.4 2.7 1.05-6L3.3 9.9l6-.9z"/></svg></div>
+        <h3 data-i18n="clb.c2.t">常见目标：CLB 7</h3>
+        <p data-i18n="clb.c2.d">CLB 7 是快速通道等项目的常见语言门槛，对应听力 60–70、阅读 60–68、口语 68–75、写作 69–78。上表已用高亮标出。</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 1 6 6c0 2.5-1 3.6-2 5.2-.8 1.3-1 2.3-1 3.8"/><path d="M6 9a6 6 0 0 1 6-6"/></svg></div>
+        <h3 data-i18n="clb.c3.t">官方信源</h3>
+        <p data-i18n="clb.c3.d">对照数据来自培生官方 PTE Core 分数指南（2023 年 12 月版）及加拿大政府语言测试换算表，可点击页脚链接查看原始文档。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：交流社区 ===== -->
+<section class="view" id="view-community">
+  <div class="container">
+    <div class="page-head">
+      <h1 data-i18n="comm.title">交流社区</h1>
+      <p data-i18n="comm.sub">与考友分享备考经验、交流机经与考场情报</p>
+    </div>
+    <div class="comm-layout">
+      <div>
+        <div class="comm-toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="text" id="commSearch" data-i18n-ph="comm.search" placeholder="搜索帖子、关键词…">
+          </div>
+          <button class="btn btn-primary" id="postBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="comm.post">发帖</span></button>
+        </div>
+        <div id="threadList"><!-- JS 渲染 --></div>
+      </div>
+      <aside>
+        <div class="side-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span data-i18n="comm.ann">社区公告</span></h3>
+          <ul class="bullet-list">
+            <li><span class="bl-dot"></span><span data-i18n="comm.ann1">2026-09 WFD 机经已更新至 77 题，新增 6 月–8 月考场原题。</span></li>
+            <li><span class="bl-dot"></span><span data-i18n="comm.ann2">SST 题库新增 6 篇高分范文，附模板句式解析。</span></li>
+            <li><span class="bl-dot"></span><span data-i18n="comm.ann3">社区发帖请遵守版规，勿传播考试作弊内容。</span></li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg><span data-i18n="comm.tag.title">热门话题</span></h3>
+          <div class="tag-cloud" id="tagCloud"><!-- JS 渲染 --></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="f-links">
+      <button id="footDisc" data-i18n="footer.disc">免责声明</button>
+      <button id="footPriv" data-i18n="footer.priv">隐私政策</button>
+    </div>
+    <p>© 2026 <span data-i18n="footer.copy">FreePTE 保留所有权利 · 本站为高保真原型演示，题库与社区数据均为示例内容</span></p>
+  </div>
+</footer>
+
+<!-- ===== 吉祥物 ===== -->
+<div class="mascot-wrap">
+  <div class="mascot-bubble" id="mascotBtn"><img src="assets/cat.jpg" alt="白猫吉祥物"></div>
+  <div class="mascot-speech" data-i18n="mascot.tip">喵～ 加油刷题，一次过 PTE！</div>
+</div>
+
+<!-- ===== 通用弹窗 ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBox"><!-- JS 填充 --></div>
+</div>
+
+<!-- ===== Toast ===== -->
+<div class="toast-wrap" id="toastWrap"><div class="toast" id="toastTxt"></div></div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/wfd-data.js"></script><script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
