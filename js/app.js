@@ -33,19 +33,20 @@ function applyLang(){
   $$('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(I18N[k])el.textContent=T(k);});
   $$('[data-i18n-ph]').forEach(el=>{el.placeholder=T(el.dataset.i18nPh);});
   $('#langTxt').textContent=lang==='zh'?'中文':'EN';
-  renderTypeGrid();renderPractice();renderClbRows();renderThreads();renderTagCloud();
+  renderTypeGrid();renderPractice();renderClbRows();renderThreads();renderTagCloud();buildWmSelects();renderWalkman();
 }
 $('#themeBtn').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();};
 $('#langBtn').onclick=()=>{lang=lang==='zh'?'en':'zh';applyLang();};
-$('#avatarBtn').onclick=()=>toast(T('toast.login'));
 $('#mascotBtn').onclick=()=>toast(T('toast.mascot'));
 $('#footDisc').onclick=()=>openModal(modalShell(T('disc.title'),'<p>'+esc(T('disc.body'))+'</p>','<button class="btn btn-primary" onclick="closeModal()">'+esc(T('btn.ok'))+'</button>'));
 $('#footPriv').onclick=()=>openModal(modalShell(T('priv.title'),'<p>'+esc(T('priv.body'))+'</p>','<button class="btn btn-primary" onclick="closeModal()">'+esc(T('btn.ok'))+'</button>'));
 
 /* ================= 路由 ================= */
-const VIEWS=['home','practice','clb','community'];
+const VIEWS=['home','practice','clb','community','walkman'];
 function router(){
   let h=location.hash.replace('#/','')||'home';
+  const m=h.match(/^walkman\/(\w+)/i);
+  if(m){h='walkman';WM.type=m[1].toUpperCase();}
   if(!VIEWS.includes(h))h='home';
   VIEWS.forEach(v=>{$('#view-'+v).classList.toggle('active',v===h);});
   $$('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.nav===h));
@@ -53,9 +54,116 @@ function router(){
   if(h==='home')renderTypeGrid();
   if(h==='clb')renderClbRows();
   if(h==='community')renderThreads();
+  if(h==='walkman')renderWalkman();
   window.scrollTo({top:0});
 }
 window.addEventListener('hashchange',router);
+
+/* ================= 随身听 ================= */
+let WM={type:'WFD',idx:0,playing:false,timer:null,rate:1};
+let wmAudio=null;
+function buildWmSelects(){
+  const rep=$('#wmRepeat');if(rep){rep.innerHTML='';
+    for(let i=1;i<=10;i++){const o=document.createElement('option');o.value=i;o.textContent=i+' '+T('wm.times');if(i===2)o.selected=true;rep.appendChild(o);}}
+  const gap=$('#wmGap');if(gap){gap.innerHTML='';
+    for(let i=1;i<=5;i++){const o=document.createElement('option');o.value=i;o.textContent=i+' '+T('wm.secs');if(i===2)o.selected=true;gap.appendChild(o);}}
+}
+function wmList(){return BANK[WM.type].list;}
+function wmQ(){const l=wmList();return l[Math.min(WM.idx,l.length-1)]||null;}
+function wmStop(){
+  if(wmAudio){try{wmAudio.pause();}catch(e){}wmAudio=null;}
+  clearTimeout(WM.timer);clearInterval(WM.timer);WM.playing=false;
+  const b=$('#wmPlay');if(b){b.classList.remove('playing');$('#wmPlayTxt').textContent=T('wm.play');}
+}
+function wmPlayBtn(){const b=$('#wmPlay');if(!b)return;b.classList.toggle('playing',WM.playing);$('#wmPlayTxt').textContent=WM.playing?T('wm.stop'):T('wm.play');}
+function renderWalkman(){
+  wmStop();
+  const l=wmList(),q=wmQ(),t=TYPES.find(t=>t.k===WM.type);
+  $('#wmTitle').textContent=WM.type==='WFD'?T('wm.wfd'):T('wm.rs');
+  $('#wmTypePill').textContent=WM.type+' · '+l.length+' 题';
+  $('#wmSentence').textContent=q?(q.a||q.q||''):'—';
+  $('#wmTrans').textContent=(WM.type==='WFD'&&q&&q.tr)?q.tr:'';
+  $('#wmProgress').innerHTML=T('wm.now')+': <b>'+(WM.idx+1)+'</b>/'+l.length;
+  wmPlayBtn();
+}
+function wmNext(){
+  wmStop();
+  const l=wmList();if(!l.length)return;
+  if($('#wmMode').value==='rand'){let n;do{n=Math.floor(Math.random()*l.length);}while(n===WM.idx&&l.length>1);WM.idx=n;}
+  else{WM.idx=(WM.idx+1)%l.length;}
+  renderWalkman();wmPlay();
+}
+function wmPrev(){
+  wmStop();
+  const l=wmList();if(!l.length)return;
+  WM.idx=(WM.idx-1+l.length)%l.length;
+  renderWalkman();wmPlay();
+}
+function wmAutoNext(){
+  /* 当前句播完（含重复）后，间隔 gap 秒自动切下一题并播放 */
+  const gap=+($('#wmGap').value)||2;
+  WM.timer=setTimeout(()=>{wmStop();wmNext();},gap*1000);
+}
+function wmPlay(){
+  const q=wmQ();if(!q)return;
+  if(WM.playing){wmStop();return;}
+  if(WM.type==='WFD'){
+    const reps=+($('#wmRepeat').value)||2,gap=+($('#wmGap').value)||2;
+    let n=0;
+    const once=()=>{
+      n++;
+      try{
+        wmAudio=new Audio(q.audio);
+        const wmV=+($('#wmVol').value);wmAudio.volume=(Number.isFinite(wmV)?wmV:80)/100;
+        wmAudio.playbackRate=WM.rate;
+        wmAudio.play().catch(()=>{});
+      }catch(e){}
+      wmAudio.addEventListener('ended',()=>{
+        if(n<reps){WM.timer=setTimeout(once,gap*1000);}
+        else wmAutoNext();
+      });
+    };
+    WM.playing=true;wmPlayBtn();once();
+  }else{
+    /* RS/其他：模拟播放，结束后同样连续切题 */
+    WM.playing=true;wmPlayBtn();
+    const gap=+($('#wmGap').value)||2;
+    let remain=2600;
+    const step=()=>{
+      if(remain<=0){wmAutoNext();return;}
+      remain-=100;
+      WM.timer=setTimeout(step,100);
+    };
+    step();
+  }
+}
+$('#wmPrev').onclick=wmPrev;
+$('#wmNext').onclick=wmNext;
+$('#wmPlay').onclick=wmPlay;
+$('#wmVol').oninput=e=>{$('#wmVolTxt').textContent=e.target.value+'%';if(wmAudio)wmAudio.volume=e.target.value/100;};
+function wmRateSet(v){
+  WM.rate=v;$('#wmRateVal').textContent=v.toFixed(2)+'x';
+  if(wmAudio)wmAudio.playbackRate=v;
+  markRateCur();
+}
+function wmRateAdj(d){
+  WM.rate=Math.min(16,Math.max(0.25,Math.round((WM.rate+d)*100)/100));
+  $('#wmRateVal').textContent=WM.rate.toFixed(2)+'x';
+  if(wmAudio)wmAudio.playbackRate=WM.rate;
+  markRateCur();
+}
+function markRateCur(){$$('#wmRateGrid button').forEach(b=>b.classList.toggle('cur',Math.abs(+b.dataset.r-WM.rate)<0.001));}
+$$('.stp').forEach(b=>b.onclick=()=>wmRateAdj(+b.dataset.step));
+$('#wmRateVal').onclick=e=>{e.stopPropagation();$('#wmRateGrid').classList.toggle('open');markRateCur();};
+$$('#wmRateGrid button').forEach(b=>b.onclick=()=>{wmRateSet(+b.dataset.r);$('#wmRateGrid').classList.remove('open');});
+document.addEventListener('click',e=>{if(!e.target.closest('.wm-rate'))$('#wmRateGrid').classList.remove('open');});
+window.addEventListener('keydown',e=>{
+  const wmActive=$('#view-walkman').classList.contains('active');
+  if(!wmActive)return;
+  if(e.key==='ArrowLeft')wmPrev();
+  if(e.key==='ArrowRight')wmNext();
+  if(e.key===' ') {e.preventDefault();wmPlay();}
+});
 
 /* ================= 首页：题型卡片 ================= */
 function typeIcon(k){

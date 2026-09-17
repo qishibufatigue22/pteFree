@@ -55,7 +55,7 @@ const I18N = {
   "toast.needAnswer":["请先作答","Please answer first"],
   "toast.posted":["发布成功，已置顶展示","Posted — shown at top"],
   "toast.postEmpty":["标题和内容不能为空","Title and content are required"],
-  "toast.login":["登录功能为原型演示","Login is a prototype demo"],
+  "toast.login":["登录功能为原型演示","Login is a prototype demo"],"home.wm.wfd.t":["WFD 随身听","WFD Walkman"],"home.wm.wfd.d":["随时练习听写技能","Practice dictation anytime"],"home.wm.rs.t":["RS 随身听","RS Walkman"],"home.wm.rs.d":["随时练习复述技能","Practice repeating anytime"],"wm.wfd":["Write From Dictation","Write From Dictation"],"wm.rs":["Repeat Sentence","Repeat Sentence"],"wm.play":["播放","Play"],"wm.stop":["暂停","Pause"],"wm.now":["当前","Now"],"wm.mode":["模式:","Mode:"],"wm.seq":["顺序","Sequential"],"wm.rand":["随机","Random"],"wm.repeat":["重复:","Repeat:"],"wm.times":["次","x"],"wm.vol":["音量:","Volume:"],"wm.gap":["间隔:","Gap:"],"wm.secs":["秒","s"],"wm.rate":["语速:","Speed:"],
   "toast.mascot":["喵！备考加油，冲鸭！","Meow! Keep going!"],
   "btn.ok":["知道了","Got it"],"btn.cancel":["取消","Cancel"],"btn.post":["发布","Post"],
   "disc.title":["免责声明","Disclaimer"],"disc.body":["本网站为 PTE 备考练习原型演示。题库内容为示例数据，音频为模拟播放，不构成任何考试真题、答案或培训承诺。PTE 为培生教育集团商标，本站与其无隶属关系。练习成绩仅供参考，实际考试请以官方信息为准。","This site is a prototype demo for PTE practice. Question data is sample content, audio is simulated; nothing here constitutes real exam material or promises. PTE is a trademark of Pearson; this site is not affiliated with it."],

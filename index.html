@@ -32,7 +32,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
         <span id="langTxt" class="lang-txt" data-i18n="lang.zh">中文</span>
       </button>
-      <div class="avatar" id="avatarBtn" data-i18n="avatar.tip">F</div>
     </div>
   </div>
 </header>
@@ -58,13 +57,18 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="demo-card">
-            <div class="dc-top"><span class="pill"><span class="dot"></span><span data-i18n="home.demo.tag">WFD 听写句子</span></span><span style="margin-left:auto;font-size:12px;color:var(--text-3);font-weight:600">#1 (1/61)</span></div>
-            <div class="demo-wave"><i style="height:22px"></i><i style="height:38px"></i><i style="height:16px"></i><i style="height:44px"></i><i style="height:28px"></i><i style="height:48px"></i><i style="height:20px"></i><i style="height:34px"></i><i style="height:42px"></i><i style="height:18px"></i><i style="height:30px"></i><i style="height:40px"></i></div>
-            <textarea readonly placeholder=""></textarea>
-            <div class="demo-btns"><span class="btn btn-primary" style="flex:0 0 44%">▶ <span data-i18n="home.demo.play">播放</span></span><span class="btn btn-ghost" data-i18n="home.demo.submit">提交</span><span class="btn btn-ghost" data-i18n="home.demo.next">下一题</span></div>
+          <div class="wm-cards">
+            <a class="wm-card" href="#/walkman/WFD">
+              <span class="wm-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2m4-4v8m4-12v16m4-13v10m4-15v20"/></svg></span>
+              <span class="wm-card-tx"><b data-i18n="home.wm.wfd.t">WFD 随身听</b><small data-i18n="home.wm.wfd.d">随时练习听写技能</small></span>
+              <span class="wm-card-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+            </a>
+            <a class="wm-card" href="#/walkman/RS">
+              <span class="wm-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10a7 7 0 0 1-14 0M12 17v4M8 21h8"/></svg></span>
+              <span class="wm-card-tx"><b data-i18n="home.wm.rs.t">RS 随身听</b><small data-i18n="home.wm.rs.d">随时练习复述技能</small></span>
+              <span class="wm-card-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+            </a>
           </div>
-          <div class="hero-cat"><img src="assets/cat.jpg" alt="Free PTE 吉祥物白猫"></div>
         </div>
       </div>
     </div>
@@ -79,36 +83,39 @@
       <div class="type-grid" id="typeGrid"><!-- JS 渲染 --></div>
     </div>
 
-    <div class="section" style="padding-top:8px">
-      <div class="section-head">
-        <div>
-          <h2 data-i18n="home.steps.title">三步开始刷题</h2>
-          <p data-i18n="home.steps.sub">从选题到评分，一条完整练习闭环</p>
-        </div>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-no"></div>
-          <h3 data-i18n="home.step1.t">选择题型</h3>
-          <p data-i18n="home.step1.d">按考试题型进入对应题库，WFD、RS、SST 等任你切换。</p>
-        </div>
-        <div class="step">
-          <div class="step-no"></div>
-          <h3 data-i18n="home.step2.t">听音作答</h3>
-          <p data-i18n="home.step2.d">播放音频完成作答，支持收藏、只看收藏与任意跳题。</p>
-        </div>
-        <div class="step">
-          <div class="step-no"></div>
-          <h3 data-i18n="home.step3.t">对照评分</h3>
-          <p data-i18n="home.step3.d">提交后对照参考答案，自我标记正误，进度与统计实时更新。</p>
-        </div>
-      </div>
-    </div>
+  </div>
+</section>
 
-    <div class="cta-band">
-      <h2 data-i18n="home.cta.t">现在就开始你的 PTE 提分之旅</h2>
-      <p data-i18n="home.cta.d">免费机经 · 高频真题 · 科学刷题节奏</p>
-      <a class="btn btn-lg" href="#/practice" data-i18n="home.cta.b">立即开始练习</a>
+<!-- ===== 视图：随身听 ===== -->
+<section class="view" id="view-walkman">
+  <div class="container">
+    <div class="wm-shell">
+      <div class="wm-head">
+        <span class="wm-title" id="wmTitle">Write From Dictation</span>
+        <span class="wm-type-pill" id="wmTypePill">WFD · 61 题</span>
+      </div>
+      <div class="wm-body">
+        <div class="wm-main">
+          <div class="wm-display">
+            <div class="wm-sentence" id="wmSentence"></div>
+            <div class="wm-trans" id="wmTrans"></div>
+          </div>
+          <div class="wm-controls">
+            <button class="wm-btn" id="wmPrev" title="上一曲"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zM20 6l-10 6 10 6z"/></svg></button>
+            <button class="wm-btn wm-play" id="wmPlay">▶ <span id="wmPlayTxt">播放</span></button>
+            <button class="wm-btn" id="wmNext" title="下一曲"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM4 6l10 6-10 6z"/></svg></button>
+          </div>
+          <div class="wm-progress" id="wmProgress">当前: <b>1</b>/61</div>
+          <div class="wm-settings">
+            <label><span data-i18n="wm.mode">模式</span><select id="wmMode"><option value="seq" data-i18n="wm.seq">顺序</option><option value="rand" data-i18n="wm.rand">随机</option></select></label>
+            <label><span data-i18n="wm.repeat">重复</span><select id="wmRepeat"></select></label>
+            <label><span data-i18n="wm.vol">音量</span><input type="range" id="wmVol" min="0" max="100" value="80"><b id="wmVolTxt">80%</b></label>
+            <label><span data-i18n="wm.gap">间隔</span><select id="wmGap"></select></label>
+            <span class="wm-rate"><span data-i18n="wm.rate">语速</span><span class="stepper"><button type="button" class="stp" data-step="-0.1" title="减 0.1">&laquo;</button><button type="button" class="stp" data-step="-0.01" title="减 0.01">&lsaquo;</button><span class="stp-val" id="wmRateVal" role="button" tabindex="0">1.00x</span><span class="rate-grid" id="wmRateGrid"><button type="button" data-r="0.25">0.25</button><button type="button" data-r="0.5">0.50</button><button type="button" data-r="0.75">0.75</button><button type="button" data-r="0.9">0.90</button><button type="button" data-r="1">1.00</button><button type="button" data-r="1.1">1.10</button><button type="button" data-r="1.25">1.25</button><button type="button" data-r="1.5">1.50</button><button type="button" data-r="1.75">1.75</button><button type="button" data-r="2">2.00</button><button type="button" data-r="2.5">2.50</button><button type="button" data-r="16">16.00</button></span><button type="button" class="stp" data-step="0.01" title="加 0.01">&rsaquo;</button><button type="button" class="stp" data-step="0.1" title="加 0.1">&raquo;</button></span></span>
+          </div>
+        </div>
+        <div class="wm-cat"><img src="assets/cat.jpg" alt="Free PTE 吉祥物白猫"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -290,6 +297,19 @@
 
 <!-- ===== Toast ===== -->
 <div class="toast-wrap" id="toastWrap"><div class="toast" id="toastTxt"></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
